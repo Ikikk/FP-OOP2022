@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package theinvaders;
+
 import java.awt.Image;
 
 /**
@@ -17,6 +18,9 @@ public class Sprite {
     int x;
     int y;
     int dx;
+    int dy;
+    int width;
+    int height;
 
     public Sprite() {
 
@@ -77,4 +81,21 @@ public class Sprite {
 
         return this.dying;
     }
+    
+    public int getWidth() {
+        return width;
+    }
+
+    public void setWidth(int width) {
+        this.width = width;
+    }
+    
+    public int getHeight() {
+        return height;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
+    }
 }
+

@@ -3,13 +3,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package theinvaders;
+
 import javax.swing.ImageIcon;
 
 /**
  *
  * @author ASUS
  */
-public class Shot extends Sprite{
+public class Shot extends Sprite {
     public Shot() {
     }
 
@@ -20,10 +21,12 @@ public class Shot extends Sprite{
 
     private void initShot(int x, int y) {
 
-        var shotImg = "D:/COOLYEAH/SEMESTER 3/PBO/FP/arrow 1.png";
+        var shotImg = "src/images/arrow 2.png";
         var ii = new ImageIcon(shotImg);
         setImage(ii.getImage());
-
+        
+        width = ii.getImage().getWidth(null);
+        setImage(ii.getImage());
         int H_SPACE = 6;
         setX(x + H_SPACE);
 

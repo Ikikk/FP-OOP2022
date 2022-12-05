@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package theinvaders;
+
 import javax.swing.ImageIcon;
 
 /**
@@ -13,9 +14,9 @@ public class Alien extends Sprite {
     private Bomb bomb;
 
     public Alien(int x, int y) {
-
         initAlien(x, y);
     }
+
 
     private void initAlien(int x, int y) {
 
@@ -24,7 +25,7 @@ public class Alien extends Sprite {
 
         bomb = new Bomb(x, y);
 
-        var alienImg = "D:/COOLYEAH/SEMESTER 3/PBO/FP/target 4.png";
+        var alienImg = "src/images/bird.png";
         var ii = new ImageIcon(alienImg);
 
         setImage(ii.getImage());
@@ -56,7 +57,7 @@ public class Alien extends Sprite {
             this.x = x;
             this.y = y;
 
-            var bombImg = "D:/COOLYEAH/SEMESTER 3/PBO/FP/arrow 1.png";
+            var bombImg = "src/images/poop.png";
             var ii = new ImageIcon(bombImg);
             setImage(ii.getImage());
         }

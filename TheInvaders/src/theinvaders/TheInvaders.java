@@ -11,33 +11,32 @@ import javax.swing.JFrame;
  *
  * @author ASUS
  */
-public class TheInvaders extends JFrame {
 
-    /**
-     * @param args the command line arguments
-     */
-    
+public class TheInvaders extends JFrame implements Commons {
+
     public TheInvaders() {
+
         initUI();
     }
-    
+
     private void initUI() {
-        add (new Board());
-        
-        setTitle("Space Invaders");
+
+        add(new Board());
+
+        setTitle("The Invaders");
         setSize(Commons.BOARD_WIDTH, Commons.BOARD_HEIGHT);
 
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setResizable(false);
         setLocationRelativeTo(null);
     }
-    
+
     public static void main(String[] args) {
-        // TODO code application logic here
+
         EventQueue.invokeLater(() -> {
 
-            var ex = new SpaceInvaders();
+            var ex = new InvadersFrame();
             ex.setVisible(true);
         });
-    } 
+    }
 }

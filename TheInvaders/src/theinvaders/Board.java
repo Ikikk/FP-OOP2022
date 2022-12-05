@@ -4,10 +4,6 @@
  */
 package theinvaders;
 
-import theinvaders.Alien;
-import theinvaders.Player;
-import theinvaders.Shot;
-
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.Timer;
@@ -15,6 +11,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -25,18 +22,22 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
+/**
+ *
+ * @author ASUS
+ */
 public class Board extends JPanel {
-
+    private Image background;
     private Dimension d;
     private List<Alien> aliens;
     private Player player;
     private Shot shot;
-    
+
     private int direction = -1;
     private int deaths = 0;
 
     private boolean inGame = true;
-    private String explImg = "src/images/explosion.png";
+    private String explImg = "src/images/explosion 2.png";
     private String message = "Game Over";
 
     private Timer timer;
@@ -52,8 +53,8 @@ public class Board extends JPanel {
 
         addKeyListener(new TAdapter());
         setFocusable(true);
-        d = new Dimension(Commons.BOARD_WIDTH, Commons.BOARD_HEIGHT);
-        setBackground(Color.black);
+//        d = new Dimension(Commons.BOARD_WIDTH, Commons.BOARD_HEIGHT);
+//        setBackground(Color.black);
 
         timer = new Timer(Commons.DELAY, new GameCycle());
         timer.start();
@@ -139,10 +140,10 @@ public class Board extends JPanel {
 
     private void doDrawing(Graphics g) {
 
-        g.setColor(Color.black);
-        g.fillRect(0, 0, d.width, d.height);
-        g.setColor(Color.green);
-
+//        g.setColor(Color.black);
+//        g.fillRect(0, 0, d.width, d.height);
+//        g.setColor(Color.green);
+        g.drawImage(background, 0, 0, getWidth(), getHeight(), null);
         if (inGame) {
 
             g.drawLine(0, Commons.GROUND,
