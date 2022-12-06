@@ -22,4 +22,5 @@ public class GameOver extends Sprite implements Commons {
         setX(0);
         setY(0);
     }
+    
 }

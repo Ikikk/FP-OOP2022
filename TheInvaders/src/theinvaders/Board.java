@@ -11,7 +11,6 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -26,8 +25,9 @@ import java.util.Random;
  *
  * @author ASUS
  */
+
 public class Board extends JPanel {
-    private Image background;
+
     private Dimension d;
     private List<Alien> aliens;
     private Player player;
@@ -46,15 +46,14 @@ public class Board extends JPanel {
     public Board() {
 
         initBoard();
-        gameInit();
     }
 
     private void initBoard() {
 
         addKeyListener(new TAdapter());
         setFocusable(true);
-//        d = new Dimension(Commons.BOARD_WIDTH, Commons.BOARD_HEIGHT);
-//        setBackground(Color.black);
+        d = new Dimension(Commons.BOARD_WIDTH, Commons.BOARD_HEIGHT);
+        setBackground(Color.black);
 
         timer = new Timer(Commons.DELAY, new GameCycle());
         timer.start();
@@ -68,10 +67,10 @@ public class Board extends JPanel {
         aliens = new ArrayList<>();
 
         for (int i = 0; i < 4; i++) {
-            for (int j = 0; j < 6; j++) {
+            for (int j = 0; j < 8; j++) {
 
-                var alien = new Alien(Commons.ALIEN_INIT_X + 18 * j,
-                        Commons.ALIEN_INIT_Y + 18 * i);
+                var alien = new Alien(Commons.ALIEN_INIT_X + 50 * j,
+                        Commons.ALIEN_INIT_Y + 50 * i);
                 aliens.add(alien);
             }
         }
@@ -140,10 +139,10 @@ public class Board extends JPanel {
 
     private void doDrawing(Graphics g) {
 
-//        g.setColor(Color.black);
-//        g.fillRect(0, 0, d.width, d.height);
-//        g.setColor(Color.green);
-        g.drawImage(background, 0, 0, getWidth(), getHeight(), null);
+        g.setColor(Color.black);
+        g.fillRect(0, 0, d.width, d.height);
+        g.setColor(Color.green);
+
         if (inGame) {
 
             g.drawLine(0, Commons.GROUND,
@@ -172,17 +171,17 @@ public class Board extends JPanel {
         g.fillRect(0, 0, Commons.BOARD_WIDTH, Commons.BOARD_HEIGHT);
 
         g.setColor(new Color(0, 32, 48));
-        g.fillRect(50, Commons.BOARD_WIDTH / 2 - 30, Commons.BOARD_WIDTH - 100, 50);
+        g.fillRect(50, Commons.BOARD_WIDTH / 4 - 30, Commons.BOARD_WIDTH - 100, 50);
         g.setColor(Color.white);
-        g.drawRect(50, Commons.BOARD_WIDTH / 2 - 30, Commons.BOARD_WIDTH - 100, 50);
+        g.drawRect(50, Commons.BOARD_WIDTH / 4 - 30, Commons.BOARD_WIDTH - 100, 50);
 
-        var small = new Font("Helvetica", Font.BOLD, 14);
+        var small = new Font("debug", Font.BOLD, 28);
         var fontMetrics = this.getFontMetrics(small);
 
         g.setColor(Color.white);
         g.setFont(small);
-        g.drawString(message, (Commons.BOARD_WIDTH - fontMetrics.stringWidth(message)) / 2,
-                Commons.BOARD_WIDTH / 2);
+        g.drawString(message, (Commons.BOARD_WIDTH - fontMetrics.stringWidth(message)) / 2 + 2,
+                Commons.BOARD_WIDTH / 4 + 2);
     }
 
     private void update() {
@@ -239,7 +238,7 @@ public class Board extends JPanel {
 
             int x = alien.getX();
 
-            if (x >= Commons.BOARD_WIDTH - Commons.BORDER_RIGHT && direction != -1) {
+            if (x >= Commons.BOARD_WIDTH - Commons.BORDER_RIGHT - 100 && direction != -1) {
 
                 direction = -1;
 

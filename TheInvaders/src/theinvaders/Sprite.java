@@ -10,7 +10,7 @@ import java.awt.Image;
  *
  * @author ASUS
  */
-public class Sprite {
+public abstract class Sprite {
     private boolean visible;
     private Image image;
     private boolean dying;
