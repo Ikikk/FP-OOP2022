@@ -15,6 +15,8 @@ public class PushPanel extends JPanel {
     private static final long serialVersionUID = 8387668405974705371L;
 
     private JButton push;
+    private Timer timer;
+    private long lastTime;
 
     /*
      * Constructor
@@ -34,4 +36,17 @@ public class PushPanel extends JPanel {
 
         }
     }
+    
+    public boolean isRunning() {
+		return timer.isRunning();
+	}
+    
+    public void pause() {
+		timer.stop();
+	}
+    
+    public void play() {
+		timer.start();
+		lastTime = System.currentTimeMillis();  // Don't include time when paused in delta calculations
+	}
 }

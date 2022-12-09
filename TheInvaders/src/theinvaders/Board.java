@@ -4,6 +4,7 @@
  */
 package theinvaders;
 
+import java.awt.BorderLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.Timer;
@@ -11,6 +12,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,6 +22,9 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -41,6 +46,12 @@ public class Board extends JPanel {
     private String message = "Game Over";
 
     private Timer timer;
+        // The gamepanel
+	private PushPanel gamePanel;
+	
+	// The main menu
+	private MainMenu mainMenu;
+        private JLabel scoreDisplay;
 
 
     public Board() {
@@ -77,7 +88,92 @@ public class Board extends JPanel {
 
         player = new Player();
         shot = new Shot();
+        
+        
+//        this.mainMenu = mainMenu;
+//        
+//        JPanel headerPanel = new JPanel();
+//		headerPanel.setLayout(new BorderLayout());
+//		headerPanel.setBackground(Color.DARK_GRAY);
+//                
+//        final JButton playPauseBtn = new JButton("Pause");
+//        playPauseBtn.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                if (gamePanel.isRunning())
+//                    gamePanel.pause();
+//                else
+//                    gamePanel.play();
+//                
+//                playPauseBtn.setText(gamePanel.isRunning()? "Pause" : "Play");
+//            }
+//        });
+//        headerPanel.add(playPauseBtn, BorderLayout.WEST);
+//        
+//        JButton quitButton = new JButton("Stop");
+//	quitButton.setBackground(Color.RED);
+//	quitButton.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//		// Temporarially pause the game while the prompt is being displayed
+//		boolean wasRunning = gamePanel.isRunning();
+//				
+//		if (wasRunning)
+//                    gamePanel.pause();
+//				
+//                    // The quit button was clicked - confirm
+//                    int selection = JOptionPane.showConfirmDialog(null, "Are you sure?", "Stop COnfirmation", JOptionPane.YES_NO_OPTION);
+//				
+//                    if (selection == JOptionPane.YES_OPTION) {
+//                    // Dispose of the frame and return to the main menu
+//                    Board.this.setVisible(false);
+//                    Board.this.dispose();
+//                    } else if (wasRunning)
+//                        gamePanel.play();
+//            }
+//	});
+//	headerPanel.add(quitButton, BorderLayout.EAST);
+//                
+//                // Create the panel for scores
+//	JPanel scorePanel = new JPanel();
+//	scorePanel.setBackground(Color.DARK_GRAY);
+//		
+//		// Set the layout
+//	GridLayout scorePanelLayout = new GridLayout(0,4);
+//	scorePanelLayout.setHgap(10);
+//	scorePanel.setLayout(scorePanelLayout);
+//                
+//                // The Player Score
+//	JLabel scoreLabel = new JLabel("Score:");
+//	scoreLabel.setForeground(Color.WHITE);
+//	scoreLabel.setHorizontalAlignment(JLabel.RIGHT);
+//	scorePanel.add(scoreLabel);
+//		
+//	scoreDisplay = new JLabel("0");
+//	scoreDisplay.setForeground(Color.CYAN);
+//	scoreDisplay.setHorizontalAlignment(JLabel.LEFT);
+//	scorePanel.add(scoreDisplay);
+//		
+//	headerPanel.add(scorePanel, BorderLayout.CENTER);
+//		
+//	add(headerPanel, BorderLayout.NORTH);
+//		
+//		// The central game panel
+//	gamePanel = new PushPanel();
+//	add(gamePanel, BorderLayout.CENTER);
+//		
+//		// Pack the frame
+//	pack();
+//	setLocationRelativeTo(null);
     }
+//    
+//        public void dispose() {
+////            super.dispose();
+//		
+//            gamePanel.pause(); // Make sure that the timer stops running
+//		
+//            mainMenu.setVisible(true);
+//        }
 
     private void drawAliens(Graphics g) {
 
@@ -336,6 +432,14 @@ public class Board extends JPanel {
         repaint();
     }
 
+    private void setLocationRelativeTo(Object object) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    private void pack() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
     private class GameCycle implements ActionListener {
 
         @Override
@@ -373,6 +477,10 @@ public class Board extends JPanel {
                     }
                 }
             }
+            
         }
+        
     }
+    
+    
 }

@@ -35,7 +35,7 @@ public class TheInvaders extends JFrame implements Commons {
 
         EventQueue.invokeLater(() -> {
 
-            var ex = new InvadersFrame();
+            var ex = new MainMenu();
             ex.setVisible(true);
         });
     }
