@@ -5,83 +5,78 @@
 package theinvaders;
 
 import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 
 /**
  *
  * @author ASUS
  */
 public abstract class Sprite {
-    private boolean visible;
-    private Image image;
-    private boolean dying;
+ 
+        private boolean visible;
+        private Image image;
+        protected int x;
+        protected int y;
+        protected boolean dying;
+        protected int dx;
+        int dy;
+        int width;
+        int height;
 
-    int x;
-    int y;
-    int dx;
-    int dy;
-    int width;
-    int height;
+        /*
+         * Constructor
+         */
+        public Sprite() {
+            visible = true;
+        }
 
-    public Sprite() {
+        public void die() {
+            visible = false;
+        }
 
-        visible = true;
-    }
+        public boolean isVisible() {
+            return visible;
+        }
 
-    public void die() {
+        protected void setVisible(boolean visible) {
+            this.visible = visible;
+        }
 
-        visible = false;
-    }
+        public void setImage(Image image) {
+            this.image = image;
+        }
 
-    public boolean isVisible() {
+        public Image getImage() {
+            return image;
+        }
 
-        return visible;
-    }
+        public void setX(int x) {
+            this.x = x;
+        }
 
-    protected void setVisible(boolean visible) {
+        public void setY(int y) {
+            this.y = y;
+        }
+        
+        public int getY() {
+            return y;
+        }
 
-        this.visible = visible;
-    }
+        public int getX() {
+            return x;
+        }
 
-    public void setImage(Image image) {
+        public void setDying(boolean dying) {
+            this.dying = dying;
+        }
 
-        this.image = image;
-    }
-
-    public Image getImage() {
-
-        return image;
-    }
-
-    public void setX(int x) {
-
-        this.x = x;
-    }
-
-    public void setY(int y) {
-
-        this.y = y;
-    }
-
-    public int getY() {
-
-        return y;
-    }
-
-    public int getX() {
-
-        return x;
-    }
-
-    public void setDying(boolean dying) {
-
-        this.dying = dying;
-    }
-
-    public boolean isDying() {
-
-        return this.dying;
-    }
-    
+        public boolean isDying() {
+            return this.dying;
+        }
+        
     public int getWidth() {
         return width;
     }

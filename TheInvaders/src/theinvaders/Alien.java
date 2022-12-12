@@ -4,6 +4,7 @@
  */
 package theinvaders;
 
+import java.awt.image.BufferedImage;
 import javax.swing.ImageIcon;
 
 /**
@@ -11,65 +12,33 @@ import javax.swing.ImageIcon;
  * @author ASUS
  */
 public class Alien extends Sprite {
+
     private Bomb bomb;
+    private final String alien = "/img/bird.png";
 
+    /*
+     * Constructor
+     */
     public Alien(int x, int y) {
-        initAlien(x, y);
-    }
-
-
-    private void initAlien(int x, int y) {
-
         this.x = x;
         this.y = y;
 
         bomb = new Bomb(x, y);
-
-        var alienImg = "src/images/bird.png";
-        var ii = new ImageIcon(alienImg);
-
+        ImageIcon ii = new ImageIcon(this.getClass().getResource(alien));
         setImage(ii.getImage());
+
     }
 
     public void act(int direction) {
-
         this.x += direction;
     }
 
-    public Bomb getBomb() {
+    /*
+     * Getters & Setters
+     */
+    
+	public Bomb getBomb() {
+		return bomb;
+	}
 
-        return bomb;
-    }
-
-    public class Bomb extends Sprite {
-
-        private boolean destroyed;
-
-        public Bomb(int x, int y) {
-
-            initBomb(x, y);
-        }
-
-        private void initBomb(int x, int y) {
-
-            setDestroyed(true);
-
-            this.x = x;
-            this.y = y;
-
-            var bombImg = "src/images/poop.png";
-            var ii = new ImageIcon(bombImg);
-            setImage(ii.getImage());
-        }
-
-        public void setDestroyed(boolean destroyed) {
-
-            this.destroyed = destroyed;
-        }
-
-        public boolean isDestroyed() {
-
-            return destroyed;
-        }
-    }
 }
