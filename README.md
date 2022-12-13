@@ -103,6 +103,9 @@ Input dan output pada FP ini dapat ditemukan dalam melakukan input dan output sk
 Method yang digunakan dapat ditemukan di class Board pada method animationCycle() dan paint()
 ```
 
+![image](https://user-images.githubusercontent.com/90395116/207271213-b2cb88e0-7e50-4769-84ef-23d7d3e559c6.png)
+![image](https://user-images.githubusercontent.com/90395116/207271525-84d8120e-8226-4d58-9522-227216c86498.png)
+![image](https://user-images.githubusercontent.com/90395116/207271981-6953cdfb-0401-4e34-905e-ca4fbe16208f.png)
 
 
 
