@@ -5,17 +5,17 @@
 package theinvaders;
 
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
+import java.awt.Color;
 import java.awt.Font;
-import java.awt.Label;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
@@ -36,6 +36,7 @@ public class TheInvaders extends JFrame implements Commons {
 
 	private final JButton start;
         private final JButton help;
+        private JTextField namePlayer;
 	
 	/*
 	 * Inicio
@@ -64,33 +65,40 @@ public class TheInvaders extends JFrame implements Commons {
 	public TheInvaders() {
 		String topmessage = "<html><br><br>" + TOP_MESSAGE + "</html>";
 		String message = "<html>" + INITIAL_MESSAGE + "</html>";
-
+                
+                        
 		start = new JButton("Start Mission");
 		start.addActionListener(new ButtonListener());
 		start.setBounds(800, 800, 200, 100);
 
 		help = new JButton("Help");
 		help.addActionListener(new HelpButton());
-
+                
 		JLabel label = new JLabel(message, SwingConstants.CENTER);
 		JLabel toplabel = new JLabel(topmessage, SwingConstants.CENTER);
-
+                
 		Font font = new Font("Helvetica", Font.BOLD, 12);
 		label.setFont(font);
 
 		Font font2 = new Font("Helvetica", Font.BOLD, 20);
 		toplabel.setFont(font2);
+                
 
 		frame2.setTitle("Space Invaders - Menu");
 
 		frame2.add(label);
 
 		frame2.add(toplabel, BorderLayout.PAGE_START);
-		JPanel panel = new JPanel();
-		panel.add(help);
-		panel.add(start);
+                
+		
+           
+                
+                JPanel main = new JPanel();
+		main.add(help);
+		main.add(start);
+                
 
-		frame2.add(panel, BorderLayout.PAGE_END);
+		frame2.add(main, BorderLayout.PAGE_END);
 		frame2.setSize(500, 500);
 		frame2.setLocationRelativeTo(null);
 		frame2.setVisible(true);
@@ -111,8 +119,18 @@ public class TheInvaders extends JFrame implements Commons {
 	 * Main
 	 */
 	public static void main(String[] args) {
+                try {
+            UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
+        } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | UnsupportedLookAndFeelException e) {
+            JOptionPane.showMessageDialog(null, 
+                    "The Invaders was unable to set the Cross Platform Look And Feel.\n" 
+                    + "The Invaders may appear differently than it was intended", 
+                    "Game Appearance Warning", JOptionPane.WARNING_MESSAGE);
+            e.printStackTrace();
+        }
 		new TheInvaders();
 	}
+
 
 	private class ButtonListener implements ActionListener {
 
@@ -160,7 +178,7 @@ public class TheInvaders extends JFrame implements Commons {
 
 			frame3.add(close, BorderLayout.PAGE_END);
 			frame3.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			frame3.setSize(250, 290);
+			frame3.setSize(500, 500);
 			frame3.setResizable(false);
 			frame3.setLocationRelativeTo(null);
 			frame3.setVisible(true);

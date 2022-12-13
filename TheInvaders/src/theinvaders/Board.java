@@ -9,6 +9,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -37,6 +38,9 @@ public class Board extends JPanel implements Runnable, Commons {
 	private Shot shot;
 	private GameOver gameend;
 	private Won vunnet;
+        private int scores;
+        private Image background;
+        private boolean visible;
 
 //	private int alienX = 150;
 //	private int alienY = 25;
@@ -61,6 +65,7 @@ public class Board extends JPanel implements Runnable, Commons {
 	private void initBoard() {
 		addKeyListener(new TAdapter());
 		setFocusable(true);
+                
 		d = new Dimension(BOARD_WIDTH, BOARD_HEIGHT);
 		setBackground(Color.black);
 
@@ -80,7 +85,7 @@ public class Board extends JPanel implements Runnable, Commons {
 		ImageIcon ii = new ImageIcon(this.getClass().getResource(alienpix));
 
 		for (int i = 0; i < 4; i++) {
-			for (int j = 0; j < 8; j++) {
+			for (int j = 0; j < 6; j++) {
 				Alien alien = new Alien(Commons.ALIEN_INIT_X + 50 * j, Commons.ALIEN_INIT_Y + 50 * i);
 				alien.setImage(ii.getImage());
 				aliens.add(alien);
@@ -95,7 +100,15 @@ public class Board extends JPanel implements Runnable, Commons {
 			animator.start();
 		}
 	}
-
+        
+        public void drawBg(Graphics g) {
+                        ImageIcon obj = new ImageIcon("/img/background.png");
+                        background = obj.getImage();
+                        g.drawImage(background, 0, 0, this);
+                        visible = true;
+                }
+        
+        
 	public void drawAliens(Graphics g) {
 		Iterator it = aliens.iterator();
 
@@ -124,9 +137,9 @@ public class Board extends JPanel implements Runnable, Commons {
 		}
 	}
 
-	public void drawGameEnd(Graphics g) {
-		g.drawImage(gameend.getImage(), 0, 0, this);
-	}
+//	public void drawGameEnd(Graphics g) {
+//		g.drawImage(gameend.getImage(), 0, 0, this);
+//	}
 
 	public void drawShot(Graphics g) {
 		if (shot.isVisible())
@@ -146,22 +159,23 @@ public class Board extends JPanel implements Runnable, Commons {
 			}
 		}
 	}
+        
+        
 
         @Override
 	public void paint(Graphics g) {
 		super.paint(g);
-
-		g.setColor(Color.black);
-		g.fillRect(0, 0, d.width, d.height);
-		g.setColor(Color.green);
+                drawBg(g);
+//		g.setColor(Color.black);
+//		g.fillRect(0, 0, d.width, d.height);
 
 		if (ingame) {
-
-			g.drawLine(0, GROUND, BOARD_WIDTH, GROUND);
+                        g.drawLine(0, GROUND, BOARD_WIDTH, GROUND);
 			drawAliens(g);
 			drawPlayer(g);
 			drawShot(g);
 			drawBombing(g);
+                        
 		}
 
 		Toolkit.getDefaultToolkit().sync();
@@ -177,22 +191,30 @@ public class Board extends JPanel implements Runnable, Commons {
 		// g.setColor(Color.black);
 		g.fillRect(0, 0, BOARD_WIDTH, BOARD_HEIGHT);
 		if (havewon == true) {
+                        g.drawString("You're Scores: " + scores, 500, 500);
+                        g.setColor(Color.WHITE);
+                        g.setFont(new Font(Font.MONOSPACED, Font.BOLD, 24));
 			g.drawImage(vunnet.getImage(), 0, 0, this);
+                        
 		} else {
+//                        g.drawString("You're Scores: " + scores, 500, 500);
+//                        g.setColor(Color.WHITE);
+//                        g.setFont(new Font(Font.MONOSPACED, Font.BOLD, 24));
 			g.drawImage(gameend.getImage(), 0, 0, this);
+                        
 		}
 //		g.setColor(new Color(0, 32, 48));
 //		g.fillRect(50, BOARD_WIDTH / 4 - 30, BOARD_WIDTH - 100, 50);
 //		g.setColor(Color.white);
 //		g.drawRect(50, BOARD_WIDTH / 4 - 30, BOARD_WIDTH - 100, 50);
 
-//		Font small = new Font("Helvetica", Font.BOLD, 40);
-//		FontMetrics metr = this.getFontMetrics(small);
-//
-//		g.setColor(Color.white);
-//		g.setFont(small);
-//		g.drawString(message, (BOARD_WIDTH - metr.stringWidth(message))/2,
-//				BOARD_WIDTH / 2);
+		Font small = new Font("Helvetica", Font.BOLD, 40);
+		FontMetrics metr = this.getFontMetrics(small);
+
+		g.setColor(Color.white);
+		g.setFont(small);
+		g.drawString("You're Scores: " + scores, (BOARD_WIDTH - metr.stringWidth(message))/2,
+				BOARD_WIDTH / 2 + 25);
 	}
 
 	public void animationCycle() {
@@ -225,6 +247,7 @@ public class Board extends JPanel implements Runnable, Commons {
 						alien.setImage(ii.getImage());
 						alien.setDying(true);
 						deaths++;
+                                                scores += 50;
 						shot.die();
 					}
 				}
@@ -314,7 +337,7 @@ public class Board extends JPanel implements Runnable, Commons {
 					player.setImage(ii.getImage());
 					player.setDying(true);
 					b.setDestroyed(true);
-					;
+					
 				}
 			}
 

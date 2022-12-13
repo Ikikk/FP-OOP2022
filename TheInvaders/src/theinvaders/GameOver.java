@@ -20,6 +20,7 @@ public final class GameOver extends Sprite implements Commons{
 
 	private final String gameOver = "/img/gameover.png";
 	private int width, height;
+        
 
 	/*
 	 * Constructor
@@ -33,6 +34,8 @@ public final class GameOver extends Sprite implements Commons{
 		setImage(ii.getImage());
 		setX(width/2);
 		setY(height/2);
+                
+                
                 
 	}
 
